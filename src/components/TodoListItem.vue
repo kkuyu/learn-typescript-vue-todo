@@ -1,17 +1,18 @@
 <template>
   <li>
-    <span class="item complete">{{ todoItem }}</span>
+    <span class="item complete">{{ todoItem.title }}</span>
     <button type="button" @click="removeItem">삭제</button>
   </li>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Todo } from "@/App.vue";
+import Vue, { PropType } from "vue";
 
 export default Vue.extend({
   props: {
     todoItem: {
-      type: String,
+      type: Object as PropType<Todo>,
       default: "",
     },
     index: {
