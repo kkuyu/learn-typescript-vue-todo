@@ -1,16 +1,30 @@
 <template>
   <div>
-    <h1>Vue Todo with Typescript</h1>
-    <TodoInput :item="todoText" @input="updateTodoText" @add="addTodoItem"></TodoInput>
+    <header>
+      <h1>Vue Todo with Typescript</h1>
+    </header>
+    <main>
+      <TodoInput
+        :item="todoText"
+        @input="updateTodoText"
+        @add="addTodoItem"
+      ></TodoInput>
+    </main>
+    <div>
+      <ul>
+        <TodoListItem></TodoListItem>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import TodoInput from "./components/TodoInput.vue";
+import TodoListItem from "./components/TodoListItem.vue";
 
 export default Vue.extend({
-  components: { TodoInput },
+  components: { TodoInput, TodoListItem },
   data() {
     return {
       todoText: "",
