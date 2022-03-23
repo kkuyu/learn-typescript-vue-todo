@@ -17,6 +17,7 @@
           :key="index"
           :index="index"
           :todoItem="todoItem"
+          @toggle="toggleTodoItem"
           @remove="removeTodoItem"
         ></TodoListItem>
       </ul>
@@ -75,6 +76,13 @@ export default Vue.extend({
     },
     fetchTodoItems() {
       this.todoItems = storage.fetch();
+    },
+    toggleTodoItem(index: number, item: Todo) {
+      this.todoItems.splice(index, 1, {
+        ...item,
+        done: !item.done,
+      });
+      storage.save(this.todoItems);
     },
     removeTodoItem(index: number) {
       this.todoItems.splice(index, 1);
