@@ -37,7 +37,7 @@ const storage = {
     const parsed = JSON.stringify(todoItems);
     localStorage.setItem(STORAGE_KEY, parsed);
   },
-  fetch() {
+  fetch(): Todo[] {
     const todoItems = localStorage.getItem(STORAGE_KEY) || "[]";
     const result = JSON.parse(todoItems);
     return result;
@@ -75,14 +75,8 @@ export default Vue.extend({
       this.todoText = "";
     },
     fetchTodoItems() {
-      this.todoItems = storage.fetch().sort((a, b) => {
-        if (a.title < b.title) {
-          return -1;
-        }
-        if (a.title > b.title) {
-          return 1;
-        }
-        return 0;
+      this.todoItems = storage.fetch().sort((a: Todo, b: Todo) => {
+        return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
       });
     },
     toggleTodoItem(index: number, item: Todo) {
